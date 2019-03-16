@@ -10,9 +10,9 @@ int main(){
 	map<string, size_t> words;
 	string word;
 	while(cin>>word){
+		for(auto &c : word)
+			c = tolower(c);
 		word.erase(remove_if(word.begin(), word.end(), ispunct), word.end());
-		for(auto &s : word)
-			s = tolower(s);
 		++words[word];
 	}
 	for(const auto w : words)
