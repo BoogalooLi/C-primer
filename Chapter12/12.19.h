@@ -106,7 +106,7 @@ StrBlobPtr& StrBlobPtr::incr(){
 	++curr;
 	return *this;
 }
-
+//Note:具体的实现顺序必须按照这个来，而且写成两个头文件编译不过，只能写成一个头文件。更标准的是.h & .cpp的格式去实现
 StrBlobPtr StrBlob::begin() { return StrBlobPtr(*this);}
 
 StrBlobPtr StrBlob::end(){
