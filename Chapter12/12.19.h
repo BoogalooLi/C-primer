@@ -45,6 +45,7 @@ class StrBlobPtr{
 		StrBlobPtr(StrBlob &a, std::size_t sz = 0):wptr(a.data), curr(sz){ }
 		std::string& deref() const;
 		StrBlobPtr& incr();
+		std::size_t pos() const {return curr;}
 	
 	private:
 		std::shared_ptr<std::vector<std::string>> 
