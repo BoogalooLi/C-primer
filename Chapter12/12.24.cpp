@@ -18,3 +18,4 @@ void ReadCin(size_t size){
 int main(){
     ReadCin(10);
 }
+//no test
