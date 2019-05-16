@@ -8,7 +8,7 @@ class HasPtr{
 		HasPtr(const std::string& s = std::string()): ps(new std::string(s)), i(0){	}
 		HasPtr(const HasPtr& hp): ps(new std::string(*hp.ps)), i(hp.i){ } // 对象是string*； 
 		HasPtr& operator=(const HasPtr& hp);
-		~HasPtr(); 
+		~HasPtr(){ delete ps;}; 
 	private:
 		std::string *ps;
 		int i;
