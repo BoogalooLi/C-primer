@@ -5,7 +5,9 @@
 using std::vector;
 #include<memory>
 using std::shared_ptr;
+using std::make_shared;
 using std::initializer_list;
+using std::weak_ptr;
 #include<string>
 using std::string;
 using std::move;
@@ -33,38 +35,49 @@ class Blob{
 		void check(size_type i, const string& msg) const;
 };
 
-template<typename T>
+template <typename T>
 void Blob<T>::check(size_type i, const string& msg) const {
 	if(i >= data->size())
 		throw std::out_of_range(msg);
 }
 
-template<typename T>
+template <typename T>
 T& Blob<T>::back(){
 	check(0, "back on empty Blob");
 	return data->back();
 }
 
-template<typename T>
+template <typename T>
 T& Blob<T>::operator[](size_type i){
 	check(i, "subscript out of range");
 	return (*data)[i];
 }
 
-template<typename T>
+template <typename T>
 const T& Blob<T>::operator[](size_type i) const {
 	check(i, "subscript out of range");
 	return (*data)[i];
 }
 
-template<typename T>
+template <typename T>
 void Blob<T>::pop_back(){
 	check(0, "pop_back on empty Blob");
 	data->pop_back();
 }
 
-template<typename T>
-Blob<T>::Blob() : data(std::make_shared<vector<T>>()){ }
+template <typename T>
+Blob<T>::Blob() : data(make_shared<vector<T>>()){ }
 
+template <typename T>
+Blob<T>::Blob(initializer_list<T> il) : data(make_shared<vector<T>>(il)) { }
 
+template <typename T>
+class BlobPtr{
+	public:
+		
+	private:
+		shared_ptr<vector<T>> check(size_t i, const string&) const;
+		weak_ptr<vector<T>> wptr;
+		size_t curr;
+};
 #endif 
