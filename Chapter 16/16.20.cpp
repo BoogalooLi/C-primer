@@ -12,7 +12,7 @@ void print(const T& t){
 
 int main(){
     vector<int> v = {1,2,3,4,5,6,7,8,9,0};
-    list<int> l = {1,2,3,4,5,6,7,8,9,0};
+    list<int> l = {1,2,3,4,5,6,7,8,9,0}; //list does not support [], so using iterator is the best choice 4 containers
     print(v);
     print(l);
 }
