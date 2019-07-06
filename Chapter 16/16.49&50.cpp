@@ -3,13 +3,6 @@
 
 using namespace std;
 
-template <typename T>
-string debug_rep(const T& t){
-	ostringstream ret;
-	ret<<t;
-	return ret.str();
-} 
-
 template <typename T> void f(T) { cout<<"f(T)"<<endl; }
 template <typename T> void g(T) { cout<<"g(T)"<<endl; }
 template <typename T> void f(const T*) { cout<<"f(const T*)"<<endl; }
