@@ -1,0 +1,99 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using std::cout;
+using std::endl;
+using std::string;
+using std::sqrt;
+using std::min;
+using std::max;
+
+void exercise_1(const int& lines){
+    if(lines <= 0)
+        cout<<"the scope of lines is positive int"<<endl;
+    else{
+    cout<<"N\t"<<"10*N\t"<<"100*N\t"<<"1000*N\t"<<endl;
+    for(auto i = 1; i <= lines; ++i)
+        cout<<i<<"\t"<<10*i<<"\t"<<100*i<<"\t"<<1000*i<<"\t"<<endl;
+    }        
+}
+
+void exercise_2(const int& width){
+    for(auto i = width; i != 0; --i){
+        if(width == i || 1 == i)
+            cout<<string(width, '*')<<endl;
+        else
+            cout<<'*' + string(width - 2, ' ') + '*'<<endl;
+    }
+}
+
+void exercise_3(const int& scope){
+    // (m^2 + n^2)^2 = (2mn)^2 + (m^2 - n^2)^2
+    int sum = 0;
+    for(auto smaller = 1; smaller <= sqrt(scope - 1); ++smaller){
+        for(auto bigger = smaller + 1; bigger <= sqrt(scope - 1); ++bigger){
+            if(bigger * bigger + smaller * smaller <= scope){
+                ++sum;
+                cout<<bigger * bigger - smaller * smaller<<" "
+                    <<2 * bigger * smaller<<" "
+                    <<bigger * bigger + smaller * smaller<<endl;
+            }
+        }
+    }
+    cout<<sum<<endl;
+}
+
+bool is_perfect(const long&);
+
+void exercise_4(const long& scope){
+    for(auto i = 2; i != scope; ++i)
+        if(is_perfect(i))
+            cout<<i<<endl;
+}
+
+bool is_perfect(const long& num){
+    auto sum = 0;
+    for(auto i = 1; i <= sqrt(num); ++i)
+        if(!(num % i))
+            sum += (i + num / i);
+    if(sum == 2 * num)
+        return true;
+    return false;
+}
+
+bool is_prime(const int&);
+int exercise_5(const int& n1, const int& n2){
+    auto minimum = min(n1, n2);
+    auto maximum = max(n1, n2);
+    if(is_prime(minimum))
+        if(!(maximum % minimum))
+            return minimum;
+        else
+            return 1;
+    if(minimum == 1)
+        return 1;
+    else if(!(maximum % minimum))
+        return minimum;
+    else
+        return exercise_5(maximum - minimum, minimum);
+}
+
+bool is_prime(const int& n){
+    for(auto i = 2; i <= sqrt(n); ++i)
+        if(!(n % i))
+            return false;
+    return true;
+}
+
+long long exercise_6(const int& n){
+    if(n == 1)
+        return 1;
+    else
+        return n * exercise_6(n - 1);
+}
+
+int main(){
+    // for testing
+    cout<<exercise_6(10);
+}
