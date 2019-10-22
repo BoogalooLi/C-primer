@@ -1,14 +1,26 @@
 #include <iostream>
+// first use in exercise_2
 #include <string>
+// first use in exercise_3
 #include <cmath>
+// first use in exercise_7
+#include <vector>
+#include <algorithm>
 
+// <iostream>
+using std::cin;
 using std::cout;
 using std::endl;
+// <string>
 using std::string;
+// <cmath>
 using std::sqrt;
 using std::min;
 using std::max;
+// <vector>
+using std::vector;
 
+// exercise_1
 void exercise_1(const int& lines){
     if(lines <= 0)
         cout<<"the scope of lines is positive int"<<endl;
@@ -19,6 +31,7 @@ void exercise_1(const int& lines){
     }        
 }
 
+// exercise_2
 void exercise_2(const int& width){
     for(auto i = width; i != 0; --i){
         if(width == i || 1 == i)
@@ -28,6 +41,7 @@ void exercise_2(const int& width){
     }
 }
 
+// exercise_3
 void exercise_3(const int& scope){
     // (m^2 + n^2)^2 = (2mn)^2 + (m^2 - n^2)^2
     int sum = 0;
@@ -44,6 +58,7 @@ void exercise_3(const int& scope){
     cout<<sum<<endl;
 }
 
+// exercise_4
 bool is_perfect(const long&);
 
 void exercise_4(const long& scope){
@@ -62,6 +77,7 @@ bool is_perfect(const long& num){
     return false;
 }
 
+// exercise_5
 bool is_prime(const int&);
 int exercise_5(const int& n1, const int& n2){
     auto minimum = min(n1, n2);
@@ -86,6 +102,7 @@ bool is_prime(const int& n){
     return true;
 }
 
+// exercise_6
 long long exercise_6(const int& n){
     if(n == 1)
         return 1;
@@ -93,7 +110,41 @@ long long exercise_6(const int& n){
         return n * exercise_6(n - 1);
 }
 
+// exercise_7
+void input(const int& a, vector<int>& v){
+    int tmp;
+    cout<<"pls input "<<a<<" numbers"<<endl;
+    while(cin>>tmp)
+        v.push_back(tmp);
+}
+
+void output(const vector<int>& v){
+    for(auto c : v)
+        cout<<c<<" ";
+    cout<<endl;
+}
+
+void exercise_7(const int& n, const int& num){
+    vector<int> vec;
+    input(n, vec);
+    cout<<"original array is : ";
+    output(vec);
+    auto it = find(vec.begin(), vec.end(), num);
+    if(it != vec.end()){
+        vec.erase(it);
+        vec.push_back(0);
+    }
+    cout<<"now, the modified array is : ";
+    output(vec);
+}
+
+void exercise_7_test(const int& m){
+    cout<<"pls input a number that u want to delete"<<endl;
+    int a;
+    cin>>a;
+    exercise_7(m, a);
+}
+
 int main(){
     // for testing
-    cout<<exercise_6(10);
 }
